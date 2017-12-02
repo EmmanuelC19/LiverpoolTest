@@ -42,12 +42,14 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCollectionViewCell
 		
 		cell.tilteLabel.text = selectedProduct.productName
-		cell.priceLabel.text = selectedProduct.price
+		cell.priceLabel.text = "$" + selectedProduct.price
+		//cell.productImageView.image = ""
+		
 		
 		if(selectedProduct.location == "false"){
-			
+			cell.locationLabel.text = "Online"
 		} else {
-			
+			cell.locationLabel.text = "Tiendas & Online"
 		}
 		
 		return cell
