@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 private let reuseIdentifier = "prductCell"
 
@@ -61,12 +62,28 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		searchFor(product: textField.text!)
+		saveSearchInHistory(search: textField.text!)
+		textField.resignFirstResponder()
 		return true
 	}
 	
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		print (textField.text!)
 		return true
+	}
+	
+	
+	func showAlertWith(title:String, message:String){
+		let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+		alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	func saveSearchInHistory(search:String){
+		let array = Utilities.gethistory().mutableCopy() as! NSMutableArray
+		if (!array.contains(search)) {
+			array.add(search)
+		}
+		Utilities.saveHistory(array: array)
 	}
 	
 	//WebServices
@@ -90,13 +107,22 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 		/* Start a new Task */
 		let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
 			if (error == nil) {
-				// Success
-				let statusCode = (response as! HTTPURLResponse).statusCode
-				print("URL Session Task Succeeded: HTTP \(statusCode)")
-			}
-			else {
-				// Failure
-				print("URL Session Task Failed: %@", error!.localizedDescription);
+				let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+				
+				if let dictionary = json as? [String: Any] {
+					if let content = dictionary["contents"] as? NSMutableArray {
+						if let mainContent = content[0] as? NSMutableArray {
+							let content = mainContent [1] as? [[String: Any]]
+							print(content!)
+						}
+					}
+				}
+
+				//let statusCode = (response as! HTTPURLResponse).statusCode
+				
+
+			} else {
+				self.showAlertWith(title: "ERROR", message: error!.localizedDescription)
 			}
 		})
 		task.resume()

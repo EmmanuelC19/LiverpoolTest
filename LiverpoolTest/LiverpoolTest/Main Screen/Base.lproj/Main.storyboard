@@ -113,12 +113,44 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="BÚSQUEDA" id="n9F-19-eib">
-                        <barButtonItem key="rightBarButtonItem" image="history_icon" id="5hX-g0-uhz"/>
+                        <barButtonItem key="rightBarButtonItem" image="history_icon" id="5hX-g0-uhz">
+                            <connections>
+                                <segue destination="Ea4-Rr-Evp" kind="show" id="AtZ-jr-wdc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QkD-lh-GoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="592.79999999999995" y="158.77061469265368"/>
+        </scene>
+        <!--Historial-->
+        <scene sceneID="FAB-Bm-WrI">
+            <objects>
+                <tableViewController title="Historial" id="Ea4-Rr-Evp" customClass="HistoryTableViewController" customModule="LiverpoolTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oPM-TS-710">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="ZSA-T0-Rst">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZSA-T0-Rst" id="pDm-d3-4dV">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ea4-Rr-Evp" id="LbX-I9-4dH"/>
+                            <outlet property="delegate" destination="Ea4-Rr-Evp" id="cgc-ut-Buu"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TUP-Od-ZL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fWB-rJ-X0n">
