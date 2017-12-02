@@ -19,8 +19,9 @@ class Utilities: NSObject {
 	
 	class func gethistory() -> NSMutableArray {
 		let userDefaults = UserDefaults.standard
-		if let array = userDefaults.object(forKey: "history") as! NSMutableArray! {
-			return array
+		if let array = userDefaults.object(forKey: "history") as! NSMutableArray!{
+			let mutable = array.mutableCopy()
+			return mutable as! NSMutableArray
 		} else {
 			return NSMutableArray()
 		}

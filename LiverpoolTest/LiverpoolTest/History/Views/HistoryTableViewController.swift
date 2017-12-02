@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class HistoryTableViewController: UITableViewController {
+class HistoryTableViewController: UITableViewController, DZNEmptyDataSetDelegate,DZNEmptyDataSetSource {
 	
 	var historyArray:NSMutableArray?
 
@@ -16,6 +17,9 @@ class HistoryTableViewController: UITableViewController {
         super.viewDidLoad()
 		historyArray = Utilities.gethistory()
 		tableView.tableFooterView = UIView()
+		
+		self.tableView.emptyDataSetDelegate = self
+		self.tableView.emptyDataSetSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,5 +44,21 @@ class HistoryTableViewController: UITableViewController {
 		cell.textLabel?.text = element as? String
         return cell
     }
+	
+	//Mark Empty Data Source Delegate
+	
+	func image (forEmptyDataSet scrollView: UIScrollView) -> UIImage {
+		return UIImage(named: "history_icon")!
+	}
+	
+	func  title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+		return NSAttributedString.init(string: "¡Ups!")
+	}
+	
+	func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+		return NSAttributedString.init(string: "Parece que aún no realizas ninguna busqueda.")
+		
+		
+	}
 }
 

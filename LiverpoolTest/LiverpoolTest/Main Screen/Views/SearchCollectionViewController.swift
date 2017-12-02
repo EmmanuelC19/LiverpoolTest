@@ -9,16 +9,19 @@
 import UIKit
 import Foundation
 import SDWebImage
+import DZNEmptyDataSet
 
 private let reuseIdentifier = "prductCell"
 
-class SearchCollectionViewController: UICollectionViewController, UITextFieldDelegate {
+class SearchCollectionViewController: UICollectionViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 	
 	var arrayOfProducts: NSMutableArray?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		arrayOfProducts = NSMutableArray()
+		self.collectionView?.emptyDataSetSource = self
+		self.collectionView?.emptyDataSetDelegate = self
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -45,7 +48,11 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 		
 		cell.tilteLabel.text = selectedProduct.productName
 		cell.priceLabel.text = "$" + selectedProduct.price
+		
+		cell.productImageView.sd_showActivityIndicatorView()
 		cell.productImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage (named: "product_placeholder"), options: SDWebImageOptions.highPriority, completed: nil)
+		
+		
 		
 		if(selectedProduct.location == "false"){
 			cell.locationLabel.text = "Online"
@@ -174,6 +181,24 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 		task.resume()
 		session.finishTasksAndInvalidate()
 	}
+	
+	//Mark Empty Data Source Delegate
+	
+	func image (forEmptyDataSet scrollView: UIScrollView) -> UIImage {
+		return UIImage(named: "product_placeholder")!
+	}
+	
+	func  title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+		return NSAttributedString.init(string: "¡Bienvenido!")
+	}
+	
+	func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+		return NSAttributedString.init(string: "Encuentra tus productos favoritos usando nuestro buscador.")
+		
+		
+	}
+	
+	
 }
 
 
