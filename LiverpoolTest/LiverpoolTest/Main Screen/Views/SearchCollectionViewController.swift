@@ -13,11 +13,11 @@ private let reuseIdentifier = "prductCell"
 
 class SearchCollectionViewController: UICollectionViewController, UITextFieldDelegate {
 	
-
+	var arrayOfProducts: NSMutableArray?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		arrayOfProducts = NSMutableArray()
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -33,13 +33,22 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 5
+		return (arrayOfProducts?.count)!
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-		
+		let selectedProduct = arrayOfProducts![indexPath.row] as! Product
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCollectionViewCell
+		
+		cell.tilteLabel.text = selectedProduct.productName
+		cell.priceLabel.text = selectedProduct.price
+		
+		if(selectedProduct.location == "false"){
+			
+		} else {
+			
+		}
 		
 		return cell
 	}
@@ -86,6 +95,33 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 		Utilities.saveHistory(array: array)
 	}
 	
+	func getArrayOfProducts(array:[[String: Any]]) -> NSMutableArray {
+		
+		let finalArray = NSMutableArray()
+		
+		for element in array {
+			let attributes = element["attributes"] as! [String: Any]
+			let title = getStringValueFromArray(array: attributes["product.displayName"] as! [String])
+			let price = getStringValueFromArray(array: attributes["sku.list_Price"] as! [String])
+			let image = getStringValueFromArray(array: attributes["sku.thumbnailImage"] as! [String])
+			let location = getStringValueFromArray(array: attributes["isAvailabilityShop"] as! [String])
+			
+			let product:Product = Product()
+			product.productName = title
+			product.image = image
+			product.price = price
+			product.location = location
+			
+			finalArray.add(product)
+		}
+		return finalArray
+	}
+	
+	func getStringValueFromArray(array:[String]) -> String{
+		let string = array.first
+		return string!
+	}
+	
 	//WebServices
 	func searchFor(product:String) {
 		let sessionConfig = URLSessionConfiguration.default
@@ -110,17 +146,24 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 				let json = try? JSONSerialization.jsonObject(with: data!, options: [])
 				
 				if let dictionary = json as? [String: Any] {
-					if let content = dictionary["contents"] as? NSMutableArray {
-						if let mainContent = content[0] as? NSMutableArray {
-							let content = mainContent [1] as? [[String: Any]]
-							print(content!)
+					if let content = dictionary["contents"] as? [[String: Any]] {
+						let contArray = content[0]["mainContent"] as? [[String: Any]]
+						let records = contArray![3]
+						let secondLevel = records["contents"] as? [[String: Any]]
+						let thirdLevel = secondLevel![0]["records"] as? [[String: Any]]
+						self.arrayOfProducts =  self.getArrayOfProducts(array: thirdLevel!)
+						DispatchQueue.main.async {
+							self.collectionView?.reloadData()
 						}
+					}else {
+						print("No es Array")
 					}
+					
 				}
-
+				
 				//let statusCode = (response as! HTTPURLResponse).statusCode
 				
-
+				
 			} else {
 				self.showAlertWith(title: "ERROR", message: error!.localizedDescription)
 			}
@@ -154,7 +197,7 @@ extension URL {
 		let URLString : String = String(format: "%@?%@", self.absoluteString, parametersDictionary.queryParameters)
 		return URL(string: URLString)!
 	}
-
+	
 	
 	
 	
