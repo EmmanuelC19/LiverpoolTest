@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import SDWebImage
 
 private let reuseIdentifier = "prductCell"
 
@@ -40,11 +41,11 @@ class SearchCollectionViewController: UICollectionViewController, UITextFieldDel
 		
 		let selectedProduct = arrayOfProducts![indexPath.row] as! Product
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCollectionViewCell
+		let imageUrl = URL(string: selectedProduct.image)
 		
 		cell.tilteLabel.text = selectedProduct.productName
 		cell.priceLabel.text = "$" + selectedProduct.price
-		//cell.productImageView.image = ""
-		
+		cell.productImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage (named: "product_placeholder"), options: SDWebImageOptions.highPriority, completed: nil)
 		
 		if(selectedProduct.location == "false"){
 			cell.locationLabel.text = "Online"

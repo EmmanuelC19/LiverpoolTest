@@ -16,9 +16,11 @@
 		14B3DD8D1FD2615400D60E7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B3DD8B1FD2615400D60E7D /* Main.storyboard */; };
 		14B3DD8F1FD2615400D60E7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B3DD8E1FD2615400D60E7D /* Assets.xcassets */; };
 		14B3DD921FD2615400D60E7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B3DD901FD2615400D60E7D /* LaunchScreen.storyboard */; };
+		6BF281A2E821D9881371B531 /* Pods_LiverpoolTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B3DFED1228F36F21B8FFA7 /* Pods_LiverpoolTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E19EF6D957FCC9E91F19821 /* Pods-LiverpoolTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiverpoolTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiverpoolTest/Pods-LiverpoolTest.debug.xcconfig"; sourceTree = "<group>"; };
 		14161BDA1FD2693A00B22CDE /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		14161BDC1FD269BE00B22CDE /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		14161BDF1FD27B3000B22CDE /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -30,6 +32,8 @@
 		14B3DD8E1FD2615400D60E7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14B3DD911FD2615400D60E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14B3DD931FD2615400D60E7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18B3DFED1228F36F21B8FFA7 /* Pods_LiverpoolTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiverpoolTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A7EFDE1C6C6E27FD066D62 /* Pods-LiverpoolTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiverpoolTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiverpoolTest/Pods-LiverpoolTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,12 +41,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BF281A2E821D9881371B531 /* Pods_LiverpoolTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1280DCA6F82D587C9C01DEE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0E19EF6D957FCC9E91F19821 /* Pods-LiverpoolTest.debug.xcconfig */,
+				B6A7EFDE1C6C6E27FD066D62 /* Pods-LiverpoolTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		14161BD81FD268FE00B22CDE /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +112,8 @@
 			children = (
 				14B3DD861FD2615400D60E7D /* LiverpoolTest */,
 				14B3DD851FD2615400D60E7D /* Products */,
+				1280DCA6F82D587C9C01DEE4 /* Pods */,
+				CB49137457CB49C3B37EAD11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +140,14 @@
 			path = LiverpoolTest;
 			sourceTree = "<group>";
 		};
+		CB49137457CB49C3B37EAD11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18B3DFED1228F36F21B8FFA7 /* Pods_LiverpoolTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,9 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14B3DD961FD2615400D60E7D /* Build configuration list for PBXNativeTarget "LiverpoolTest" */;
 			buildPhases = (
+				70DE72ED5285AECC9605627C /* [CP] Check Pods Manifest.lock */,
 				14B3DD801FD2615400D60E7D /* Sources */,
 				14B3DD811FD2615400D60E7D /* Frameworks */,
 				14B3DD821FD2615400D60E7D /* Resources */,
+				12FED3B810217D42B278C7A0 /* [CP] Embed Pods Frameworks */,
+				03FDDBE767B0ED6072822DD3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,6 +217,64 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03FDDBE767B0ED6072822DD3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiverpoolTest/Pods-LiverpoolTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		12FED3B810217D42B278C7A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LiverpoolTest/Pods-LiverpoolTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiverpoolTest/Pods-LiverpoolTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70DE72ED5285AECC9605627C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LiverpoolTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14B3DD801FD2615400D60E7D /* Sources */ = {
@@ -336,6 +421,7 @@
 		};
 		14B3DD971FD2615400D60E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E19EF6D957FCC9E91F19821 /* Pods-LiverpoolTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -351,6 +437,7 @@
 		};
 		14B3DD981FD2615400D60E7D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6A7EFDE1C6C6E27FD066D62 /* Pods-LiverpoolTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
